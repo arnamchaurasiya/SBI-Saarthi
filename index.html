@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SBI Saarthi — AI Financial Charioteer | Demo</title>
+  <meta name="description" content="SBI Saarthi: Agentic AI-powered proactive banking for India's 52 crore customers. Live demo for SBI Hackathon @ GFF2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ═══════════════════════════════════════════════════
+       SIDEBAR NAVIGATION
+  ═══════════════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-mark">
+        <span class="logo-icon">॥</span>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">SBI Saarthi</span>
+        <span class="logo-sub">AI Banking Platform</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item active" data-tab="dashboard" onclick="switchTab('dashboard', this)">
+        <span class="nav-icon">⚡</span>
+        <span>Live Dashboard</span>
+      </a>
+      <a class="nav-item" data-tab="detector" onclick="switchTab('detector', this)">
+        <span class="nav-icon">🎯</span>
+        <span>Event Detector</span>
+      </a>
+      <a class="nav-item" data-tab="agents" onclick="switchTab('agents', this)">
+        <span class="nav-icon">🤖</span>
+        <span>Agent Pipeline</span>
+      </a>
+      <a class="nav-item" data-tab="whatsapp" onclick="switchTab('whatsapp', this)">
+        <span class="nav-icon">💬</span>
+        <span>WhatsApp Engage</span>
+      </a>
+      <a class="nav-item" data-tab="customers" onclick="switchTab('customers', this)">
+        <span class="nav-icon">👤</span>
+        <span>Customer 360</span>
+      </a>
+      <a class="nav-item" data-tab="metrics" onclick="switchTab('metrics', this)">
+        <span class="nav-icon">📊</span>
+        <span>Impact Metrics</span>
+      </a>
+      <a class="nav-item" data-tab="bharat" onclick="switchTab('bharat', this)">
+        <span class="nav-icon">🇮🇳</span>
+        <span>Bharat Mode</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="status-dot active"></div>
+      <span>52 Cr Customers Active</span>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════════════
+       MAIN CONTENT AREA
+  ═══════════════════════════════════════════════════ -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="breadcrumb" id="breadcrumb">Live Dashboard</div>
+      </div>
+      <div class="topbar-right">
+        <div class="lang-switcher">
+          <button class="lang-btn active" onclick="setLang('en', this)">EN</button>
+          <button class="lang-btn" onclick="setLang('hi', this)">हि</button>
+        </div>
+        <div class="alert-bell" id="alertBell">
+          🔔
+          <span class="badge" id="alertCount">3</span>
+        </div>
+        <div class="user-chip">
+          <span class="user-avatar">SBI</span>
+          <span>Admin</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ─────────────────────────────────────
+         TAB 1: LIVE DASHBOARD
+    ───────────────────────────────────── -->
+    <section class="tab-content active" id="tab-dashboard">
+      <div class="section-header">
+        <h1 class="section-title" data-en="⚡ Live Saarthi Dashboard" data-hi="⚡ लाइव सारथी डैशबोर्ड">⚡ Live Saarthi Dashboard</h1>
+        <p class="section-sub" data-en="Real-time monitoring of 52 crore SBI customers — AI working 24/7" data-hi="52 करोड़ SBI ग्राहकों की रियल-टाइम निगरानी">Real-time monitoring of 52 crore SBI customers — AI working 24/7</p>
+      </div>
+
+      <!-- KPI Row -->
+      <div class="kpi-row">
+        <div class="kpi-card pulse-gold">
+          <div class="kpi-icon">👁</div>
+          <div class="kpi-data">
+            <div class="kpi-value" id="kpi-monitored">52,00,00,000</div>
+            <div class="kpi-label" data-en="Customers Monitored" data-hi="ग्राहक निगरानी में">Customers Monitored</div>
+          </div>
+        </div>
+        <div class="kpi-card pulse-teal">
+          <div class="kpi-icon">🎯</div>
+          <div class="kpi-data">
+            <div class="kpi-value" id="kpi-events">1,247</div>
+            <div class="kpi-label" data-en="Events Detected Today" data-hi="आज पहचाने गए इवेंट">Events Detected Today</div>
+          </div>
+        </div>
+        <div class="kpi-card pulse-green">
+          <div class="kpi-icon">📨</div>
+          <div class="kpi-data">
+            <div class="kpi-value" id="kpi-messages">843</div>
+            <div class="kpi-label" data-en="Proactive Messages Sent" data-hi="प्रोएक्टिव संदेश भेजे">Proactive Messages Sent</div>
+          </div>
+        </div>
+        <div class="kpi-card pulse-coral">
+          <div class="kpi-icon">💰</div>
+          <div class="kpi-data">
+            <div class="kpi-value" id="kpi-revenue">₹2.4 Cr</div>
+            <div class="kpi-label" data-en="Revenue Generated Today" data-hi="आज उत्पन्न राजस्व">Revenue Generated Today</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Event Feed + Agent Activity -->
+      <div class="grid-2col">
+        <div class="card">
+          <div class="card-header">
+            <h3>🔴 Live Event Feed</h3>
+            <span class="live-badge">LIVE</span>
+          </div>
+          <div class="event-feed" id="eventFeed">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>🤖 Agent Activity Monitor</h3>
+            <span class="live-badge">LIVE</span>
+          </div>
+          <div class="agent-activity" id="agentActivity">
+            <div class="agent-row">
+              <div class="agent-name">🔍 Context Agent</div>
+              <div class="agent-bar-wrap"><div class="agent-bar" style="width:87%" id="bar-context"></div></div>
+              <div class="agent-pct" id="pct-context">87%</div>
+            </div>
+            <div class="agent-row">
+              <div class="agent-name">📊 Financial Intelligence</div>
+              <div class="agent-bar-wrap"><div class="agent-bar teal" style="width:72%" id="bar-fin"></div></div>
+              <div class="agent-pct" id="pct-fin">72%</div>
+            </div>
+            <div class="agent-row">
+              <div class="agent-name">🎯 Strategy Agent</div>
+              <div class="agent-bar-wrap"><div class="agent-bar coral" style="width:61%" id="bar-strat"></div></div>
+              <div class="agent-pct" id="pct-strat">61%</div>
+            </div>
+            <div class="agent-row">
+              <div class="agent-name">🛡 Guardrail Agent</div>
+              <div class="agent-bar-wrap"><div class="agent-bar red" style="width:45%" id="bar-guard"></div></div>
+              <div class="agent-pct" id="pct-guard">45%</div>
+            </div>
+            <div class="agent-row">
+              <div class="agent-name">📣 Outreach Agent</div>
+              <div class="agent-bar-wrap"><div class="agent-bar green" style="width:93%" id="bar-out"></div></div>
+              <div class="agent-pct" id="pct-out">93%</div>
+            </div>
+          </div>
+
+          <!-- Channel Distribution -->
+          <div class="channel-dist">
+            <div class="ch-item">
+              <span>📱 WhatsApp</span>
+              <div class="ch-bar-wrap"><div class="ch-bar" style="width:68%"></div></div>
+              <span>68%</span>
+            </div>
+            <div class="ch-item">
+              <span>🔔 YONO</span>
+              <div class="ch-bar-wrap"><div class="ch-bar teal" style="width:22%"></div></div>
+              <span>22%</span>
+            </div>
+            <div class="ch-item">
+              <span>📩 SMS</span>
+              <div class="ch-bar-wrap"><div class="ch-bar coral" style="width:10%"></div></div>
+              <span>10%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Today's Life Events Breakdown -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3>📅 Today's Life Events Detected</h3>
+          <button class="btn-ghost" onclick="switchTab('detector', document.querySelector('[data-tab=detector]'))">View All →</button>
+        </div>
+        <div class="events-grid" id="eventsGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────
+         TAB 2: EVENT DETECTOR
+    ───────────────────────────────────── -->
+    <section class="tab-content" id="tab-detector">
+      <div class="section-header">
+        <h1 class="section-title">🎯 Life Event Intelligence Engine</h1>
+        <p class="section-sub">AI detects 40+ Indian financial life events from transaction signals in real-time</p>
+      </div>
+
+      <!-- Customer Input Simulator -->
+      <div class="card">
+        <div class="card-header">
+          <h3>🔬 Simulate Transaction Signal</h3>
+          <span class="tag">Live Demo</span>
+        </div>
+        <div class="detector-controls">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Customer Account</label>
+              <select id="simCustomer">
+                <option value="rajesh">Rajesh Kumar — Patna (Govt. Teacher)</option>
+                <option value="priya">Priya Sharma — Mumbai (IT Professional)</option>
+                <option value="vikram">Vikram Patel — Ahmedabad (Business Owner)</option>
+                <option value="meena">Meena Devi — Jaipur (Homemaker)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Transaction Type</label>
+              <select id="simEventType">
+                <option value="marriage">💍 Wedding Venue Payment + Gold Purchase</option>
+                <option value="home">🏠 Stamp Duty + Registry Payment</option>
+                <option value="baby">👶 Maternity Hospital Payment</option>
+                <option value="salary">📈 Salary Credit Jump > 20%</option>
+                <option value="diwali">🪔 Large Cash Withdrawal (Festival)</option>
+                <option value="retire">🧓 Age 58 + Pension Credit Start</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Amount (₹)</label>
+              <input type="number" id="simAmount" value="85000" />
+            </div>
+            <button class="btn-primary" onclick="runDetector()">▶ Run AI Detection</button>
+          </div>
+        </div>
+
+        <!-- Detection Pipeline Visualization -->
+        <div class="detection-pipeline" id="detectionPipeline" style="display:none">
+          <div class="pipeline-steps">
+            <div class="pip-step" id="pip1">
+              <div class="pip-icon">📥</div>
+              <div class="pip-label">Data Ingested</div>
+              <div class="pip-detail" id="pip1-detail">—</div>
+            </div>
+            <div class="pip-arrow">→</div>
+            <div class="pip-step" id="pip2">
+              <div class="pip-icon">⚡</div>
+              <div class="pip-label">Kafka Stream</div>
+              <div class="pip-detail" id="pip2-detail">—</div>
+            </div>
+            <div class="pip-arrow">→</div>
+            <div class="pip-step" id="pip3">
+              <div class="pip-icon">🧠</div>
+              <div class="pip-label">Context Agent</div>
+              <div class="pip-detail" id="pip3-detail">—</div>
+            </div>
+            <div class="pip-arrow">→</div>
+            <div class="pip-step" id="pip4">
+              <div class="pip-icon">📊</div>
+              <div class="pip-label">Pattern Match</div>
+              <div class="pip-detail" id="pip4-detail">—</div>
+            </div>
+            <div class="pip-arrow">→</div>
+            <div class="pip-step" id="pip5">
+              <div class="pip-icon">🎯</div>
+              <div class="pip-label">Event Confirmed</div>
+              <div class="pip-detail" id="pip5-detail">—</div>
+            </div>
+          </div>
+          <div class="detection-result" id="detectionResult" style="display:none">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 40 Life Events Library -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3>📚 Indian Life Event Library — 40+ Triggers</h3>
+        </div>
+        <div class="events-library" id="eventsLibrary">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────
+         TAB 3: AGENT PIPELINE
+    ───────────────────────────────────── -->
+    <section class="tab-content" id="tab-agents">
+      <div class="section-header">
+        <h1 class="section-title">🤖 Multi-Agent AI Orchestration</h1>
+        <p class="section-sub">LangGraph-powered pipeline of 5 specialized agents — watch them work in real-time</p>
+      </div>
+
+      <!-- Architecture Diagram -->
+      <div class="card arch-card">
+        <div class="arch-flow">
+          <!-- Data sources -->
+          <div class="arch-col">
+            <div class="arch-label">DATA SOURCES</div>
+            <div class="arch-source" id="src-cbs">🏦 CBS</div>
+            <div class="arch-source" id="src-upi">💳 UPI</div>
+            <div class="arch-source" id="src-yono">📱 YONO</div>
+            <div class="arch-source" id="src-card">💳 Cards</div>
+          </div>
+          <div class="arch-arrow-col">
+            <div class="arch-big-arrow" id="arrow1">→</div>
+          </div>
+          <!-- Kafka -->
+          <div class="arch-col">
+            <div class="arch-box kafka" id="kafka-box">
+              <div>⚡</div>
+              <div>Kafka</div>
+              <div class="arch-sub">Event Stream</div>
+            </div>
+          </div>
+          <div class="arch-arrow-col">
+            <div class="arch-big-arrow" id="arrow2">→</div>
+          </div>
+          <!-- Orchestrator -->
+          <div class="arch-col">
+            <div class="arch-box orchestrator" id="orch-box">
+              <div>🧠</div>
+              <div>LangGraph</div>
+              <div class="arch-sub">Orchestrator</div>
+            </div>
+          </div>
+          <div class="arch-arrow-col">
+            <div class="arch-big-arrow" id="arrow3">→</div>
+          </div>
+          <!-- Agents -->
+          <div class="arch-col agents-col">
+            <div class="arch-label">AI AGENTS</div>
+            <div class="arch-agent" id="agent-context">🔍 Context Agent</div>
+            <div class="arch-agent" id="agent-fin">📊 Financial Intel</div>
+            <div class="arch-agent" id="agent-strat">🎯 Strategy Agent</div>
+            <div class="arch-agent" id="agent-guard">🛡 Guardrail Agent</div>
+            <div class="arch-agent" id="agent-out">📣 Outreach Agent</div>
+          </div>
+          <div class="arch-arrow-col">
+            <div class="arch-big-arrow" id="arrow4">→</div>
+          </div>
+          <!-- Output -->
+          <div class="arch-col">
+            <div class="arch-label">OUTPUT</div>
+            <div class="arch-output" id="out-wa">📱 WhatsApp</div>
+            <div class="arch-output" id="out-yono">🔔 YONO Push</div>
+            <div class="arch-output" id="out-sms">📩 SMS/USSD</div>
+            <div class="arch-output" id="out-voice">🗣 Voice IVR</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Run a scenario through the pipeline -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3>▶ Run Live Agent Scenario</h3>
+        </div>
+        <div class="scenario-picker">
+          <button class="scenario-btn active" onclick="runScenario('rajesh', this)">
+            <span>💍</span> Rajesh's Marriage
+          </button>
+          <button class="scenario-btn" onclick="runScenario('priya', this)">
+            <span>🏠</span> Priya's Home Loan
+          </button>
+          <button class="scenario-btn" onclick="runScenario('vikram', this)">
+            <span>📈</span> Vikram's Salary Hike
+          </button>
+          <button class="scenario-btn" onclick="runScenario('meena', this)">
+            <span>👶</span> Meena's Baby Arrival
+          </button>
+        </div>
+        <div class="agent-log" id="agentLog">
+          <div class="log-placeholder">Select a scenario above to run the agent pipeline...</div>
+        </div>
+      </div>
+
+      <!-- Agent Detail Cards -->
+      <div class="agents-detail-grid mt-4" id="agentsDetailGrid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────
+         TAB 4: WHATSAPP ENGAGEMENT
+    ───────────────────────────────────── -->
+    <section class="tab-content" id="tab-whatsapp">
+      <div class="section-header">
+        <h1 class="section-title">💬 WhatsApp Engagement Simulator</h1>
+        <p class="section-sub">See how Saarthi reaches customers in their native language — where they already are</p>
+      </div>
+
+      <div class="grid-2col wa-grid">
+        <!-- Left: Controls -->
+        <div class="wa-controls">
+          <div class="card">
+            <h3>📋 Scenario Settings</h3>
+            <div class="form-group mt-2">
+              <label>Customer</label>
+              <select id="waCustomer" onchange="loadWAScenario()">
+                <option value="rajesh">Rajesh Kumar (Hindi)</option>
+                <option value="priya">Priya Sharma (English)</option>
+                <option value="vikram">Vikram Patel (Gujarati)</option>
+                <option value="meena">Meena Devi (Hindi)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Life Event</label>
+              <select id="waEvent" onchange="loadWAScenario()">
+                <option value="marriage">💍 Marriage Detected</option>
+                <option value="home">🏠 Home Purchase</option>
+                <option value="baby">👶 Child Birth</option>
+                <option value="salary">📈 Salary Hike</option>
+                <option value="diwali">🪔 Diwali Bonus</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Language</label>
+              <select id="waLang" onchange="loadWAScenario()">
+                <option value="hi">हिंदी (Hindi)</option>
+                <option value="en">English</option>
+                <option value="gu">ગુજરાતી (Gujarati)</option>
+                <option value="mr">मराठी (Marathi)</option>
+                <option value="ta">தமிழ் (Tamil)</option>
+              </select>
+            </div>
+            <button class="btn-primary full-width" onclick="playWAConversation()">▶ Play Conversation</button>
+          </div>
+
+          <!-- Recommended Products -->
+          <div class="card mt-3">
+            <h3>🎁 AI-Recommended Products</h3>
+            <div class="product-recs" id="productRecs">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Guardrail Status -->
+          <div class="card mt-3 guardrail-card">
+            <h3>🛡 Guardrail Agent Status</h3>
+            <div class="guardrail-check" id="guardrailStatus">
+              <div class="gr-item pass">✅ RBI Disclosure: Compliant</div>
+              <div class="gr-item pass">✅ SEBI Suitability: Verified</div>
+              <div class="gr-item pass">✅ Data Privacy: Encrypted</div>
+              <div class="gr-item pass">✅ Language Compliance: OK</div>
+              <div class="gr-item warn">⚠ Investment Risk: Disclosed</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: WhatsApp Interface -->
+        <div class="wa-phone-wrap">
+          <div class="wa-phone">
+            <div class="wa-header">
+              <div class="wa-avatar">SBI</div>
+              <div class="wa-info">
+                <div class="wa-name">SBI Saarthi</div>
+                <div class="wa-status" id="waStatus">typing...</div>
+              </div>
+              <div class="wa-actions">📞 🎥</div>
+            </div>
+            <div class="wa-body" id="waBody">
+              <!-- Messages populated by JS -->
+            </div>
+            <div class="wa-footer">
+              <input type="text" class="wa-input" id="waInput" placeholder="Type a message..." />
+              <button class="wa-send" onclick="sendWAMessage()">➤</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────
+         TAB 5: CUSTOMER 360
+    ───────────────────────────────────── -->
+    <section class="tab-content" id="tab-customers">
+      <div class="section-header">
+        <h1 class="section-title">👤 Customer 360° Intelligence</h1>
+        <p class="section-sub">Complete financial profile — behaviors, patterns, and predicted next events</p>
+      </div>
+
+      <!-- Customer Selector -->
+      <div class="customer-selector">
+        <div class="cust-card active" id="cust-rajesh" onclick="loadCustomer('rajesh', this)">
+          <div class="cust-avatar">👨‍💼</div>
+          <div class="cust-name">Rajesh Kumar</div>
+          <div class="cust-city">Patna</div>
+        </div>
+        <div class="cust-card" id="cust-priya" onclick="loadCustomer('priya', this)">
+          <div class="cust-avatar">👩‍💻</div>
+          <div class="cust-name">Priya Sharma</div>
+          <div class="cust-city">Mumbai</div>
+        </div>
+        <div class="cust-card" id="cust-vikram" onclick="loadCustomer('vikram', this)">
+          <div class="cust-avatar">👨‍💼</div>
+          <div class="cust-name">Vikram Patel</div>
+          <div class="cust-city">Ahmedabad</div>
+        </div>
+        <div class="cust-card" id="cust-meena" onclick="loadCustomer('meena', this)">
+          <div class="cust-avatar">👩</div>
+          <div class="cust-name">Meena Devi</div>
+          <div class="cust-city">Jaipur</div>
+        </div>
+      </div>
+
+      <!-- Customer Detail View -->
+      <div class="grid-3col mt-4">
+        <div class="card">
+          <div class="cust-profile" id="custProfile"><!-- Populated by JS --></div>
+        </div>
+        <div class="card">
+          <h3>💳 Transaction Pattern</h3>
+          <div class="tx-pattern" id="txPattern"><!-- Populated by JS --></div>
+        </div>
+        <div class="card">
+          <h3>🔮 AI Predictions</h3>
+          <div class="predictions" id="custPredictions"><!-- Populated by JS --></div>
+        </div>
+      </div>
+
+      <!-- Transaction History -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3>📜 Recent Transactions</h3>
+          <span class="tag" id="custName-tag">Rajesh Kumar</span>
+        </div>
+        <div class="tx-table" id="txTable"><!-- Populated by JS --></div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────
+         TAB 6: IMPACT METRICS
+    ───────────────────────────────────── -->
+    <section class="tab-content" id="tab-metrics">
+      <div class="section-header">
+        <h1 class="section-title">📊 Business Impact Dashboard</h1>
+        <p class="section-sub">SBI Saarthi by the numbers — before and after</p>
+      </div>
+
+      <!-- Before/After Comparison -->
+      <div class="metrics-ba-grid">
+        <div class="ba-card before">
+          <div class="ba-label">BEFORE SAARTHI</div>
+          <div class="ba-stats">
+            <div class="ba-stat"><span class="ba-val red">12%</span><span class="ba-desc">Cross-sell Rate</span></div>
+            <div class="ba-stat"><span class="ba-val red">₹1,000</span><span class="ba-desc">Acquisition Cost</span></div>
+            <div class="ba-stat"><span class="ba-val red">8%</span><span class="ba-desc">Annual Churn</span></div>
+            <div class="ba-stat"><span class="ba-val red">30%</span><span class="ba-desc">YONO Engagement</span></div>
+            <div class="ba-stat"><span class="ba-val red">₹2,800</span><span class="ba-desc">Revenue/Customer/Year</span></div>
+          </div>
+        </div>
+
+        <div class="ba-arrow-col">
+          <div class="ba-big-arrow">→<br/><span>AI</span><br/>→</div>
+        </div>
+
+        <div class="ba-card after">
+          <div class="ba-label after-label">WITH SAARTHI ✨</div>
+          <div class="ba-stats">
+            <div class="ba-stat"><span class="ba-val green" data-target="55">0%</span><span class="ba-desc">Cross-sell Rate (+4.5×)</span></div>
+            <div class="ba-stat"><span class="ba-val green" data-prefix="₹" data-target="400">₹0</span><span class="ba-desc">Acquisition Cost (−60%)</span></div>
+            <div class="ba-stat"><span class="ba-val green" data-target="3.5">0%</span><span class="ba-desc">Annual Churn (−56%)</span></div>
+            <div class="ba-stat"><span class="ba-val green" data-target="65">0%</span><span class="ba-desc">YONO Engagement (+2×)</span></div>
+            <div class="ba-stat"><span class="ba-val green" data-prefix="₹" data-target="7500">₹0</span><span class="ba-desc">Revenue/Customer/Year (+2.7×)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Market Size -->
+      <div class="market-size-row mt-4">
+        <div class="market-card tam">
+          <div class="market-label">TAM</div>
+          <div class="market-title">Indian Digital Banking Market</div>
+          <div class="market-value">₹1.8 Lakh Cr</div>
+          <div class="market-sub">$22 Billion</div>
+        </div>
+        <div class="market-arrow">▶</div>
+        <div class="market-card sam">
+          <div class="market-label">SAM</div>
+          <div class="market-title">Engagement Platform Market</div>
+          <div class="market-value">₹18,000 Cr</div>
+          <div class="market-sub">$2.2 Billion</div>
+        </div>
+        <div class="market-arrow">▶</div>
+        <div class="market-card som">
+          <div class="market-label">SOM</div>
+          <div class="market-title">Achievable in 3 Years</div>
+          <div class="market-value">₹2,400 Cr</div>
+          <div class="market-sub">$290 Million</div>
+        </div>
+      </div>
+
+      <!-- Revenue Streams -->
+      <div class="card mt-4">
+        <div class="card-header"><h3>💰 Revenue Streams</h3></div>
+        <div class="rev-streams" id="revStreams">
+          <div class="rev-item">
+            <div class="rev-icon">🏦</div>
+            <div class="rev-info">
+              <div class="rev-name">SBI Internal Cost Savings</div>
+              <div class="rev-desc">40% advisory call automation, reduced CAC, advisory at scale</div>
+            </div>
+            <div class="rev-val">₹800 Cr+/yr</div>
+          </div>
+          <div class="rev-item">
+            <div class="rev-icon">🤝</div>
+            <div class="rev-info">
+              <div class="rev-name">B2B SaaS — PSU Banks</div>
+              <div class="rev-desc">White-label license to Bank of Baroda, PNB, Canara</div>
+            </div>
+            <div class="rev-val">₹500 Cr/yr</div>
+          </div>
+          <div class="rev-item">
+            <div class="rev-icon">📊</div>
+            <div class="rev-info">
+              <div class="rev-name">Ecosystem Commission</div>
+              <div class="rev-desc">Insurance (3-5%), MF SIPs (0.5-1%), Loan origination fees</div>
+            </div>
+            <div class="rev-val">₹1,200 Cr LTV</div>
+          </div>
+          <div class="rev-item">
+            <div class="rev-icon">📈</div>
+            <div class="rev-info">
+              <div class="rev-name">Policy Analytics</div>
+              <div class="rev-desc">Anonymized behavioral insights for SEBI, RBI</div>
+            </div>
+            <div class="rev-val">₹100 Cr/yr</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────
+         TAB 7: BHARAT MODE
+    ───────────────────────────────────── -->
+    <section class="tab-content" id="tab-bharat">
+      <div class="section-header">
+        <h1 class="section-title">🇮🇳 Bharat Mode — Banking for Every Indian</h1>
+        <p class="section-sub">Feature-phone SMS/USSD support — inclusive banking for non-smartphone users</p>
+      </div>
+
+      <div class="grid-2col">
+        <!-- Feature Phone Simulator -->
+        <div class="card">
+          <h3>📱 Feature Phone SMS Simulator</h3>
+          <div class="feature-phone" id="featurePhone">
+            <div class="phone-screen">
+              <div class="phone-header">SBI Saarthi</div>
+              <div class="phone-messages" id="phoneMessages">
+                <div class="sms-msg">Welcome to SBI Saarthi. Reply with your query in Hindi.</div>
+              </div>
+              <div class="phone-input-row">
+                <input class="phone-input" id="smsInput" placeholder="Type SMS reply..." />
+                <button class="phone-send" onclick="sendSMS()">Send</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- USSD Simulator -->
+          <h3 class="mt-4">📡 USSD Flow Simulator</h3>
+          <div class="ussd-simulator">
+            <div class="ussd-screen" id="ussdScreen">
+              <div class="ussd-title">SBI Saarthi</div>
+              <div class="ussd-menu" id="ussdMenu">
+                <div>1. Account Balance</div>
+                <div>2. Mini Statement</div>
+                <div>3. My Savings Plan</div>
+                <div>4. Insurance Options</div>
+                <div>5. Talk to Saarthi</div>
+              </div>
+            </div>
+            <div class="ussd-btns">
+              <button class="ussd-btn" onclick="ussdSelect('1')">1</button>
+              <button class="ussd-btn" onclick="ussdSelect('2')">2</button>
+              <button class="ussd-btn" onclick="ussdSelect('3')">3</button>
+              <button class="ussd-btn" onclick="ussdSelect('4')">4</button>
+              <button class="ussd-btn" onclick="ussdSelect('5')">5</button>
+              <button class="ussd-btn red" onclick="ussdReset()">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Voice IVR -->
+        <div class="card">
+          <h3>🗣 Vernacular Voice IVR</h3>
+          <div class="voice-ivr">
+            <div class="ivr-lang-select">
+              <button class="ivr-lang-btn active" onclick="setIVRLang('hi', this)">हिंदी</button>
+              <button class="ivr-lang-btn" onclick="setIVRLang('ta', this)">தமிழ்</button>
+              <button class="ivr-lang-btn" onclick="setIVRLang('mr', this)">मराठी</button>
+              <button class="ivr-lang-btn" onclick="setIVRLang('bn', this)">বাংলা</button>
+              <button class="ivr-lang-btn" onclick="setIVRLang('te', this)">తెలుగు</button>
+              <button class="ivr-lang-btn" onclick="setIVRLang('gu', this)">ગુજ</button>
+            </div>
+            <div class="ivr-display" id="ivrDisplay">
+              <div class="ivr-transcript" id="ivrTranscript">
+                <div class="ivr-line saarthi">नमस्ते! मैं SBI सारथी हूँ। मैं आपकी सहायता के लिए यहाँ हूँ।</div>
+                <div class="ivr-line saarthi">आपके खाते में इस महीने वेतन में वृद्धि देखी गई है।</div>
+                <div class="ivr-line saarthi">क्या आप अपनी बचत को SIP में निवेश करना चाहेंगे?</div>
+              </div>
+              <div class="ivr-controls">
+                <button class="ivr-btn" onclick="ivrSay('1')">1️⃣ हाँ</button>
+                <button class="ivr-btn" onclick="ivrSay('2')">2️⃣ नहीं</button>
+                <button class="ivr-btn" onclick="ivrSay('0')">0️⃣ मुख्य मेनू</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="bharat-stats mt-4">
+            <h3>📊 Bharat Mode Coverage</h3>
+            <div class="bharat-stat-row">
+              <div class="bh-stat"><div class="bh-val">45 Cr</div><div class="bh-lbl">Feature Phone Users in India</div></div>
+              <div class="bh-stat"><div class="bh-val">22</div><div class="bh-lbl">Scheduled Languages Supported</div></div>
+              <div class="bh-stat"><div class="bh-val">2G+</div><div class="bh-lbl">Network Requirement</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════
+       NOTIFICATION TOAST
+  ═══════════════════════════════════════════════════ -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
